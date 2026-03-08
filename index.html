@@ -354,7 +354,7 @@
     <!-- 로컬 스크립트 -->
     <script src="script.js"></script>
 
-    <!-- Firebase · rlnl 공용 설정 사용 -->
+     <!-- Firebase · rlnl 공용 설정 사용 -->
     <script type="module">
       import app, { auth, db } from "./firebase.js";
       import {
@@ -398,8 +398,8 @@
           }
 
           // licenses / {입력한 키} 문서 조회
-          const ref = doc(db, "licenses", key);   // [web:868][web:878]
-          const snap = await getDoc(ref);         // [web:868][web:878]
+          const ref = doc(db, "licenses", key);
+          const snap = await getDoc(ref);
 
           if (!snap.exists()) {
             alert("존재하지 않는 라이선스 키입니다.");
@@ -407,13 +407,30 @@
           }
 
           const data = snap.data();
+          const now = Date.now();
 
+          // 상태 체크
           if (data.status !== "active") {
             alert(`사용 불가한 키입니다. 상태: ${data.status}`);
             return;
           }
 
-          alert(`정상 키입니다! 상품: ${data.productId}`);
+          // 만료일 체크 (expiresAt 있으면)
+          if (data.expiresAt && data.expiresAt.toMillis() < now) {
+            alert("만료된 라이선스입니다. (기간 종료)");
+            return;
+          }
+
+          // 정상인 경우
+          alert(
+            `정상 키입니다!\n` +
+            `상품: ${data.productId}\n` +
+            `만료일: ${
+              data.expiresAt
+                ? data.expiresAt.toDate().toLocaleString()
+                : "만료일 정보 없음"
+            }`
+          );
         } catch (e) {
           console.error(e);
           alert("라이선스 확인 중 오류가 발생했습니다.");
@@ -426,3 +443,4 @@
     </script>
   </body>
 </html>
+
