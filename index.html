@@ -107,14 +107,26 @@
                 rlnl은 디스코드 전용 라이선스 관리 봇입니다.
                 실제 서비스에 적용 가능한 구조로 운영되고 있으며, 신규 기능은 점진적으로 추가되고 있습니다.
               </p>
-              <div class="buttons">
+              <div class="buttons" style="align-items: center; gap: 8px; flex-wrap: wrap;">
                 <a href="https://discord.gg/dsZjSb8JS2" class="button is-info">
                   <strong>서비스 안내 디스코드</strong>
                 </a>
 
-                <!-- 여기 버튼으로 라이선스 테스트 -->
-                <a href="#features" class="button is-primary is-outlined" onclick="checkLicense()">
-                  <strong><i class="fa-solid fa-crown"></i> 기능 살펴보기</strong>
+                <!-- 라이선스 키 입력 -->
+                <input
+                  id="licenseInput"
+                  class="input"
+                  style="max-width: 220px;"
+                  placeholder="라이선스 키 입력"
+                />
+
+                <!-- 라이선스 확인 버튼 -->
+                <a
+                  href="#features"
+                  class="button is-primary is-outlined"
+                  onclick="checkLicense()"
+                >
+                  <strong><i class="fa-solid fa-crown"></i> 라이선스 확인</strong>
                 </a>
               </div>
             </div>
@@ -368,7 +380,7 @@
         }
       };
 
-      // 라이선스 체크 (예시: 고정 문서)
+      // 라이선스 체크 (입력한 키 기반)
       window.checkLicense = async () => {
         try {
           const user = auth.currentUser;
@@ -377,15 +389,31 @@
             return;
           }
 
-          const ref = doc(db, "licenses", "CggzPif227EeT7sFrLT7");
-          const snap = await getDoc(ref);
+          const inputEl = document.getElementById("licenseInput");
+          const key = inputEl.value.trim();
 
-          if (snap.exists()) {
-            console.log(snap.data());
-            alert("라이선스 문서 있음");
-          } else {
-            alert("라이선스 문서 없음");
+          if (!key) {
+            alert("라이선스 키를 입력해주세요.");
+            return;
           }
+
+          // licenses / {입력한 키} 문서 조회
+          const ref = doc(db, "licenses", key);   // [web:868][web:878]
+          const snap = await getDoc(ref);         // [web:868][web:878]
+
+          if (!snap.exists()) {
+            alert("존재하지 않는 라이선스 키입니다.");
+            return;
+          }
+
+          const data = snap.data();
+
+          if (data.status !== "active") {
+            alert(`사용 불가한 키입니다. 상태: ${data.status}`);
+            return;
+          }
+
+          alert(`정상 키입니다! 상품: ${data.productId}`);
         } catch (e) {
           console.error(e);
           alert("라이선스 확인 중 오류가 발생했습니다.");
