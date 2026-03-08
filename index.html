@@ -111,7 +111,8 @@
                   <strong>서비스 안내 디스코드</strong>
                 </a>
 
-                <a href="#features" class="button is-primary is-outlined">
+                <!-- 여기 버튼으로 테스트 -->
+                <a href="#features" class="button is-primary is-outlined" onclick="checkLicense()">
                   <strong><i class="fa-solid fa-crown"></i> 기능 살펴보기</strong>
                 </a>
               </div>
@@ -339,5 +340,38 @@
 
     <!-- 로컬 스크립트 -->
     <script src="script.js"></script>
+
+    <!-- Firebase · Firestore -->
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+      import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+
+      const firebaseConfig = {
+        apiKey: "네 apiKey",
+        authDomain: "rani-mall-firebase.firebaseapp.com",
+        projectId: "rani-mall-firebase",
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+
+      // 테스트용 라이선스 체크
+      window.checkLicense = async () => {
+        try {
+          const ref = doc(db, "licenses", "CggzPif227EeT7sFrLT7");
+          const snap = await getDoc(ref);
+
+          if (snap.exists()) {
+            console.log(snap.data());
+            alert("라이선스 문서 있음");
+          } else {
+            alert("라이선스 문서 없음");
+          }
+        } catch (e) {
+          console.error(e);
+          alert("라이선스 확인 중 오류가 발생했습니다.");
+        }
+      };
+    </script>
   </body>
 </html>
