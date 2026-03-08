@@ -80,10 +80,11 @@
 
           <div class="navbar-item">
             <div class="buttons">
-              <a href="#" class="button is-blurple">
+              <!-- 로그인 버튼 -->
+              <a href="#" class="button is-blurple" onclick="loginWithGoogle()">
                 <strong
                   ><i class="fa-solid fa-right-to-bracket mr-2"></i>
-                  Login (준비 중)</strong
+                  Login</strong
                 >
               </a>
             </div>
@@ -111,7 +112,7 @@
                   <strong>서비스 안내 디스코드</strong>
                 </a>
 
-                <!-- 여기 버튼으로 테스트 -->
+                <!-- 여기 버튼으로 라이선스 테스트 -->
                 <a href="#features" class="button is-primary is-outlined" onclick="checkLicense()">
                   <strong><i class="fa-solid fa-crown"></i> 기능 살펴보기</strong>
                 </a>
@@ -341,23 +342,41 @@
     <!-- 로컬 스크립트 -->
     <script src="script.js"></script>
 
-    <!-- Firebase · Firestore -->
+    <!-- Firebase · rlnl 공용 설정 사용 -->
     <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
-      import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore.js";
+      import app, { auth, db } from "./firebase.js";
+      import {
+        GoogleAuthProvider,
+        signInWithPopup,
+        onAuthStateChanged
+      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+      import {
+        doc,
+        getDoc
+      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-      const firebaseConfig = {
-        apiKey: "네 apiKey",
-        authDomain: "rani-mall-firebase.firebaseapp.com",
-        projectId: "rani-mall-firebase",
+      const provider = new GoogleAuthProvider();
+
+      // 로그인
+      window.loginWithGoogle = async () => {
+        try {
+          await signInWithPopup(auth, provider);
+          alert("로그인 완료");
+        } catch (e) {
+          console.error(e);
+          alert("로그인 중 오류 발생");
+        }
       };
 
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-
-      // 테스트용 라이선스 체크
+      // 라이선스 체크 (예시: 고정 문서)
       window.checkLicense = async () => {
         try {
+          const user = auth.currentUser;
+          if (!user) {
+            alert("먼저 로그인 해주세요.");
+            return;
+          }
+
           const ref = doc(db, "licenses", "CggzPif227EeT7sFrLT7");
           const snap = await getDoc(ref);
 
@@ -372,6 +391,10 @@
           alert("라이선스 확인 중 오류가 발생했습니다.");
         }
       };
+
+      onAuthStateChanged(auth, (user) => {
+        console.log("auth state:", user?.email || "로그아웃");
+      });
     </script>
   </body>
 </html>
