@@ -22,6 +22,15 @@
 
     <!-- 로컬 JS (UI용) -->
     <script src="jquery-3.6.0.js"></script>
+
+    <style>
+      /* 라이선스 카드 텍스트 잘림 방지 */
+      .license-card .card-content {
+        overflow: visible;
+        word-break: keep-all;
+        white-space: normal;
+      }
+    </style>
   </head>
   <body>
     <!-- Back To Top Start -->
@@ -109,7 +118,7 @@
               </p>
 
               <!-- 라이선스 카드 -->
-              <div class="card mt-5" style="max-width: 420px;">
+              <div class="card license-card mt-5" style="max-width: 420px;">
                 <div class="card-content">
                   <p class="title is-6 mb-3">
                     라이선스 상태 확인
