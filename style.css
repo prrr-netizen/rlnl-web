@@ -67,17 +67,39 @@ body {
   color: #7ad3ff;
 }
 
+/* 헤더 버튼 묶음 */
+.fa-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
 /* 로그인 버튼 */
 .fa-login-btn {
   border: none;
   border-radius: 999px;
-  padding: 6px 16px;
+  padding: 6px 14px;
   font-size: 12px;
   font-weight: 500;
   cursor: pointer;
   background: rgba(24, 40, 80, 0.95);
   color: #e4edff;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
+}
+
+/* 로그아웃 버튼 */
+.fa-logout-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  background: rgba(220, 80, 80, 0.95);
+  color: #fff;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
+  white-space: nowrap;
 }
 
 /* 메인 레이아웃 */
@@ -163,12 +185,19 @@ body {
 
 /* 제목/본문 타이포 강화 */
 .fa-title {
-  font-size: 34px;
+  font-size: 30px;
   line-height: 1.35;
-  margin: 0 0 16px;
+  margin: 0 0 14px;
   color: #f5f7ff;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+/* 메인 히어로 타이틀 전용 (더 굵고 큼) */
+.fa-title-main {
+  font-size: 38px;
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9);
 }
 
@@ -322,7 +351,11 @@ body {
   }
 
   .fa-title {
-    font-size: 26px;
+    font-size: 22px;
+  }
+
+  .fa-title-main {
+    font-size: 28px;
   }
 
   .fa-image-frame {
