@@ -353,13 +353,12 @@
 
     <!-- 원래 script.js 내용 (UI용) -->
     <script>
-      // 예시: back to top, navbar burger 등 기존 script.js 내용 붙여넣기
-      // 너가 쓰던 script.js 그대로 여기로 옮기면 됨.
+      // 여기다가 기존 script.js 내용 붙여넣기
+      // (back to top, navbar burger, AOS.init(), tippy() 등)
     </script>
 
-    <!-- Firebase + 라이선스 로직을 한 파일에 통합 -->
+    <!-- Firebase + 라이선스 로직 통합 -->
     <script type="module">
-      // Firebase SDK v9 모듈 임포트[web:58][web:63]
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
       import {
         getAuth,
@@ -373,24 +372,22 @@
         getDoc
       } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-      // 🔹 네 프로젝트용 Firebase 설정으로 교체[web:65]
       const firebaseConfig = {
-        apiKey: "YOUR_API_KEY",
+        apiKey: "AIzaSyAPn2ZTZjAxqX4WIzd8O43jq8cXD_8J1SE",
         authDomain: "rani-mall-firebase.firebaseapp.com",
         projectId: "rani-mall-firebase",
-        storageBucket: "rani-mall-firebase.appspot.com",
-        messagingSenderId: "YOUR_SENDER_ID",
-        appId: "YOUR_APP_ID"
+        storageBucket: "rani-mall-firebase.firebasestorage.app",
+        messagingSenderId: "231199139441",
+        appId: "1:231199139441:web:fe2e971c00a8282cb95dd0",
+        measurementId: "G-KYFWJED24P",
       };
 
-      // Firebase init
       const app = initializeApp(firebaseConfig);
       const auth = getAuth(app);
-      const db = getFirestore(app);
+      const db   = getFirestore(app);
 
       const provider = new GoogleAuthProvider();
 
-      // 전역에서 쓸 수 있게 window에 붙이기[web:58]
       window.loginWithGoogle = async () => {
         try {
           await signInWithPopup(auth, provider);
@@ -417,7 +414,6 @@
             return;
           }
 
-          // licenses / {입력한 키} 문서 조회
           const ref = doc(db, "licenses", key);
           const snap = await getDoc(ref);
 
@@ -429,27 +425,24 @@
           const data = snap.data();
           const now = Date.now();
 
-          // 상태 체크
           if (data.status !== "active") {
             alert(`사용 불가한 키입니다. 상태: ${data.status}`);
             return;
           }
 
-          // 만료일 체크 (expiresAt 있으면)
           if (data.expiresAt && data.expiresAt.toMillis() < now) {
             alert("만료된 라이선스입니다. (기간 종료)");
             return;
           }
 
-          // 정상인 경우
           alert(
             `정상 키입니다!\n` +
-              `상품: ${data.productId}\n` +
-              `만료일: ${
-                data.expiresAt
-                  ? data.expiresAt.toDate().toLocaleString()
-                  : "만료일 정보 없음"
-              }`
+            `상품: ${data.productId}\n` +
+            `만료일: ${
+              data.expiresAt
+                ? data.expiresAt.toDate().toLocaleString()
+                : "만료일 정보 없음"
+            }`
           );
         } catch (e) {
           console.error(e);
