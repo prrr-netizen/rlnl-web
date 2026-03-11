@@ -217,8 +217,7 @@ nav.nav-w {
 }
 
 @media (max-width: 767px) {
-  .shape-right
- {
+  .shape-right {
     display: none;
   }
 }
@@ -241,4 +240,81 @@ nav.nav-w {
   .shape-left {
     display: none;
   }
+}
+
+/* 라이선스 카드 텍스트 잘림 방지 */
+.license-card .card-content {
+  overflow: visible;
+  word-break: keep-all;
+  white-space: normal;
+}
+
+/* === Frutiger Aero-ish 스킨 오버레이 === */
+
+/* 배경: 어두운 네이비 대신 하늘+화이트+초록 그라데이션 느낌 */
+.bg-base {
+  background: linear-gradient(135deg, #6dd5fa 0%, #ffffff 45%, #b7ffbf 100%);
+}
+
+/* 네비바를 유리 패널 느낌으로 */
+nav,
+.navbar-menu {
+  background: rgba(255, 255, 255, 0.7) !important;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 30px rgba(0, 120, 200, 0.25);
+}
+
+/* 기본 텍스트 색 조금 밝게 */
+.navbar-item,
+.navbar-link {
+  color: #0f1b2b !important;
+}
+
+.navbar-item.nav-dark,
+.navbar-link.nav-dark {
+  color: #0f1b2b !important;
+}
+
+/* 스크롤 시 nav-w도 유리 스타일 유지 */
+nav.nav-w,
+.nav-w {
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 12px 30px rgba(0, 120, 200, 0.25) !important;
+}
+
+/* 브랜드 컬러를 물빛으로 */
+.blurple {
+  color: #00a8ff;
+}
+
+/* 버튼 글로시 느낌 */
+.button.is-primary,
+.button.is-blurple {
+  background: linear-gradient(135deg, #00c3ff 0%, #006eff 100%);
+  border: none;
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(0, 120, 200, 0.45);
+}
+
+.button.is-primary:hover,
+.button.is-blurple:hover {
+  filter: brightness(1.07);
+}
+
+/* 라이선스 카드 유리 느낌 */
+.license-card {
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 45px rgba(0, 140, 220, 0.35);
+}
+
+/* Hero 제목 발광 느낌 */
+.hero .title {
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero 이미지 드롭 섀도 */
+.vert-move {
+  filter: drop-shadow(0 24px 34px rgba(0, 120, 200, 0.5));
 }
