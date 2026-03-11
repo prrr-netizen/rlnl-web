@@ -20,7 +20,7 @@
       referrerpolicy="no-referrer"
     />
 
-    <!-- 로컬 JS -->
+    <!-- 로컬 JS (UI용) -->
     <script src="jquery-3.6.0.js"></script>
   </head>
   <body>
@@ -351,25 +351,46 @@
     <script src="https://unpkg.com/@popperjs/core@2"></script>
     <script src="https://unpkg.com/tippy.js@6"></script>
 
-    <!-- 로컬 스크립트 -->
-    <script src="script.js"></script>
+    <!-- 원래 script.js 내용 (UI용) -->
+    <script>
+      // 예시: back to top, navbar burger 등 기존 script.js 내용 붙여넣기
+      // 너가 쓰던 script.js 그대로 여기로 옮기면 됨.
+    </script>
 
-     <!-- Firebase · rlnl 공용 설정 사용 -->
+    <!-- Firebase + 라이선스 로직을 한 파일에 통합 -->
     <script type="module">
-      import app, { auth, db } from "./firebase.js";
+      // Firebase SDK v9 모듈 임포트[web:58][web:63]
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
       import {
+        getAuth,
         GoogleAuthProvider,
         signInWithPopup,
         onAuthStateChanged
       } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
       import {
+        getFirestore,
         doc,
         getDoc
       } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
+      // 🔹 네 프로젝트용 Firebase 설정으로 교체[web:65]
+      const firebaseConfig = {
+        apiKey: "YOUR_API_KEY",
+        authDomain: "rani-mall-firebase.firebaseapp.com",
+        projectId: "rani-mall-firebase",
+        storageBucket: "rani-mall-firebase.appspot.com",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+      };
+
+      // Firebase init
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getFirestore(app);
+
       const provider = new GoogleAuthProvider();
 
-      // 로그인
+      // 전역에서 쓸 수 있게 window에 붙이기[web:58]
       window.loginWithGoogle = async () => {
         try {
           await signInWithPopup(auth, provider);
@@ -380,7 +401,6 @@
         }
       };
 
-      // 라이선스 체크 (입력한 키 기반)
       window.checkLicense = async () => {
         try {
           const user = auth.currentUser;
@@ -424,12 +444,12 @@
           // 정상인 경우
           alert(
             `정상 키입니다!\n` +
-            `상품: ${data.productId}\n` +
-            `만료일: ${
-              data.expiresAt
-                ? data.expiresAt.toDate().toLocaleString()
-                : "만료일 정보 없음"
-            }`
+              `상품: ${data.productId}\n` +
+              `만료일: ${
+                data.expiresAt
+                  ? data.expiresAt.toDate().toLocaleString()
+                  : "만료일 정보 없음"
+              }`
           );
         } catch (e) {
           console.error(e);
@@ -443,4 +463,3 @@
     </script>
   </body>
 </html>
-
