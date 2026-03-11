@@ -20,7 +20,10 @@
         <a href="#license">License</a>
         <a href="#about">About</a>
       </nav>
-      <button id="loginBtn" class="fa-login-btn">Google 로그인</button>
+      <div class="fa-header-actions">
+        <button id="loginBtn" class="fa-login-btn">Google 로그인</button>
+        <button id="logoutBtn" class="fa-logout-btn" style="display:none;">로그아웃</button>
+      </div>
     </div>
   </header>
 
@@ -39,7 +42,7 @@
       <div class="fa-window-content">
         <!-- 왼쪽: 텍스트 + 라이선스 설명 -->
         <div class="fa-col fa-col-left">
-          <h1 class="fa-title">
+          <h1 class="fa-title fa-title-main">
             디스코드에서 끝내는<br />
             라이선스 관리, <span class="accent">rlnl</span>.
           </h1>
@@ -107,7 +110,8 @@
       getAuth,
       GoogleAuthProvider,
       signInWithPopup,
-      onAuthStateChanged
+      onAuthStateChanged,
+      signOut
     } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
     import {
       getFirestore,
@@ -131,6 +135,7 @@
     const provider = new GoogleAuthProvider();
 
     const loginBtn       = document.getElementById("loginBtn");
+    const logoutBtn      = document.getElementById("logoutBtn");
     const checkBtn       = document.getElementById("checkBtn");
     const licenseInput   = document.getElementById("licenseInput");
     const loginStateText = document.getElementById("loginStateText");
@@ -143,6 +148,17 @@
       } catch (e) {
         console.error(e);
         alert("로그인 중 오류 발생");
+      }
+    });
+
+    // 로그아웃 버튼
+    logoutBtn.addEventListener("click", async () => {
+      try {
+        await signOut(auth);
+        alert("로그아웃 되었습니다.");
+      } catch (e) {
+        console.error(e);
+        alert("로그아웃 중 오류 발생");
       }
     });
 
@@ -200,12 +216,12 @@
     // 로그인 상태 표시
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        loginBtn.textContent = user.displayName
-          ? `${user.displayName} (로그아웃 예정 기능)`
-          : "로그인됨";
+        loginBtn.style.display = "none";
+        logoutBtn.style.display = "inline-flex";
         loginStateText.textContent = "현재 계정으로 라이선스 조회가 가능합니다.";
       } else {
-        loginBtn.textContent = "Google 로그인";
+        loginBtn.style.display = "inline-flex";
+        logoutBtn.style.display = "none";
         loginStateText.textContent = "Google 로그인 후 사용 가능합니다.";
       }
     });
