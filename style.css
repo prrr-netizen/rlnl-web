@@ -21,6 +21,7 @@ body {
   color: #ffffff;
   background: #050812;
   min-height: 100vh; /* 화면 기준으로 꽉 채우기 */
+  font-size: 16px;   /* 기본 폰트 크기 살짝 업 */
 }
 
 /* 전체 배경 – 살짝 효과 + 기본 다크 */
@@ -58,7 +59,7 @@ body {
 
 .fa-logo {
   font-weight: 700;
-  font-size: 19px;
+  font-size: 20px;         /* 19 → 20 */
   letter-spacing: 0.03em;
   color: #4fb4ff;
 }
@@ -67,7 +68,7 @@ body {
   margin-left: 18px;
   text-decoration: none;
   color: #c7d4ff;
-  font-size: 14px;
+  font-size: 15px;         /* 14 → 15 */
   font-weight: 500;
 }
 
@@ -87,7 +88,7 @@ body {
   border: none;
   border-radius: 999px;
   padding: 6px 14px;
-  font-size: 12px;
+  font-size: 13px;         /* 12 → 13 */
   font-weight: 500;
   cursor: pointer;
   background: rgba(24, 40, 80, 0.95);
@@ -101,7 +102,7 @@ body {
   border: none;
   border-radius: 999px;
   padding: 6px 14px;
-  font-size: 12px;
+  font-size: 13px;         /* 12 → 13 */
   font-weight: 500;
   cursor: pointer;
   background: rgba(220, 80, 80, 0.95);
@@ -113,8 +114,8 @@ body {
 /* 메인 레이아웃 – 아래까지 다크 유지, 여백 살짝 줄임 */
 .fa-main {
   max-width: 1080px;
-  margin: 40px auto 30px;  /* 아래 60 → 30 */
-  padding: 0 16px 30px;    /* 패딩도 40 → 30 */
+  margin: 40px auto 30px;
+  padding: 0 16px 30px;
   background: #050812;
 }
 
@@ -162,7 +163,7 @@ body {
 }
 
 .fa-window-title {
-  font-size: 13px;
+  font-size: 14px;         /* 13 → 14 */
   font-weight: 500;
   color: #9fb3ff;
 }
@@ -201,7 +202,7 @@ body {
 /* 메인 문구 그라데이션 텍스트 */
 .fa-title-main {
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  font-size: 32px;
+  font-size: 34px;         /* 32 → 34 */
   font-weight: 800;
   line-height: 1.45;
   margin: 0 0 14px;
@@ -221,7 +222,7 @@ body {
 
 /* 서브타이틀 */
 .fa-subtitle {
-  font-size: 14px;
+  font-size: 15px;         /* 14 → 15 */
   line-height: 1.7;
   color: #c5cdee;
   margin: 0 0 20px;
@@ -243,7 +244,7 @@ body {
 
 .fa-card-title {
   margin: 0 0 10px;
-  font-size: 16px;
+  font-size: 17px;         /* 16 → 17 */
   font-weight: 600;
   color: #ffffff;
   letter-spacing: 0.03em;
@@ -251,7 +252,7 @@ body {
 
 .fa-card-text {
   margin: 0 0 14px;
-  font-size: 13px;
+  font-size: 14px;         /* 13 → 14 */
   line-height: 1.6;
   color: #c5cdee;
 }
@@ -267,7 +268,7 @@ body {
   padding: 10px 12px;
   border-radius: 999px;
   border: 1px solid rgba(140, 210, 255, 0.35);
-  font-size: 13px;
+  font-size: 14px;         /* 13 → 14 */
   background: rgba(3, 8, 20, 0.9);
   color: #ffffff;
 }
@@ -282,7 +283,7 @@ body {
   border: none;
   background: radial-gradient(circle at 30% 0, #9af0ff, #0070ff);
   color: #ffffff;
-  font-size: 13px;
+  font-size: 14px;         /* 13 → 14 */
   font-weight: 600;
   cursor: pointer;
   box-shadow: 0 14px 28px rgba(0, 140, 255, 0.8);
@@ -294,12 +295,12 @@ body {
 
 .fa-card-help {
   margin: 0 0 8px;
-  font-size: 11px;
+  font-size: 12px;         /* 11 → 12 */
   color: #8a94bd;
 }
 
 .fa-link {
-  font-size: 12px;
+  font-size: 13px;         /* 12 → 13 */
   text-decoration: none;
   color: #6fd7ff;
   font-weight: 500;
@@ -339,14 +340,14 @@ body {
 
 .fa-section h2 {
   margin: 0 0 10px;
-  font-size: 16px;
+  font-size: 17px;         /* 16 → 17 */
   font-weight: 600;
   color: #ffffff;
 }
 
 .fa-section p {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;         /* 13 → 14 */
   line-height: 1.7;
   color: #c5cdee;
 }
@@ -354,7 +355,7 @@ body {
 /* 푸터 */
 .fa-footer {
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;         /* 11 → 12 */
   color: #818db4;
   margin-bottom: 20px;
 }
@@ -370,7 +371,7 @@ body {
   }
 
   .fa-title-main {
-    font-size: 26px;
+    font-size: 28px;       /* 모바일에서도 한 단계 크게 */
   }
 
   .fa-image-frame {
