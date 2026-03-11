@@ -1,568 +1,214 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>rlnl WEB · Discord 라이선스 봇</title>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <title>rlnl WEB · Discord 라이선스 봇</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- 로컬 CSS -->
-    <link rel="stylesheet" href="bulma.min.css" />
-    <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- 전체 배경 -->
+  <div class="fa-bg"></div>
 
-    <!-- 외부 CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
-    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <!-- 상단 헤더 -->
+  <header class="fa-header">
+    <div class="fa-header-inner">
+      <div class="fa-logo">rlnl WEB</div>
+      <nav class="fa-nav">
+        <a href="#home">Home</a>
+        <a href="#license">License</a>
+        <a href="#about">About</a>
+      </nav>
+      <button id="loginBtn" class="fa-login-btn">Google 로그인</button>
+    </div>
+  </header>
 
-    <!-- 로컬 JS (UI용) -->
-    <script src="jquery-3.6.0.js"></script>
-
-    <style>
-      /* 라이선스 카드 텍스트 잘림 방지 */
-      .license-card .card-content {
-        overflow: visible;
-        word-break: keep-all;
-        white-space: normal;
-      }
-
-      /* Hero 메인 이미지 크기/비율 조정 */
-      .hero-main-image {
-        max-width: 420px;
-        border-radius: 22px;
-        object-fit: cover;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Back To Top Start -->
-    <a id="backtotop" data-tippy-content="Back To Top.">
-      <i class="fa-solid fa-angle-up has-text-white fa-2xl mt-5"></i>
-    </a>
-    <!-- Back To Top End -->
-
-    <!-- Navbar Start -->
-    <nav
-      class="navbar is-fixed-top"
-      role="navigation"
-      aria-label="main navigation"
-    >
-      <div class="navbar-brand mt-2 mb-2">
-        <a class="navbar-item" href="#">
-          <strong>rlnl WEB</strong>
-        </a>
-
-        <a
-          role="button"
-          class="navbar-burger has-text-white"
-          data-target="navbarBasicExample"
-          aria-label="menu"
-          aria-expanded="false"
-        >
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
+  <!-- 메인 윈도우 -->
+  <main id="home" class="fa-main">
+    <section class="fa-window">
+      <div class="fa-window-topbar">
+        <div class="dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="fa-window-title">Discord License · rlnl</div>
       </div>
 
-      <div id="navbarBasicExample" class="navbar-menu">
-        <div class="navbar-start">
-          <a href="#" class="navbar-item is-tab">
-            Home
-          </a>
+      <div class="fa-window-content">
+        <!-- 왼쪽: 텍스트 + 라이선스 설명 -->
+        <div class="fa-col fa-col-left">
+          <h1 class="fa-title">
+            디스코드에서 끝내는<br />
+            라이선스 관리, <span class="accent">rlnl</span>.
+          </h1>
+          <p class="fa-subtitle">
+            디스코드 전용 라이선스 관리 봇입니다.<br />
+            실제 서비스에 적용 가능한 구조로 운영 중이며,<br />
+            신규 기능은 점진적으로 추가되고 있습니다.
+          </p>
 
-          <a href="#features" class="navbar-item is-tab">
-            Features
-          </a>
-
-          <a href="#stats" class="navbar-item is-tab">
-            Stats
-          </a>
-
-          <a href="#" class="navbar-item is-tab">
-            Docs (준비 중)
-          </a>
-        </div>
-
-        <div class="navbar-end">
-          <a href="https://discord.gg/dsZjSb8JS2" class="navbar-item is-tab" target="_blank">
-            <i class="fa-brands fa-discord"></i>
-          </a>
-
-          <div class="navbar-item">
-            <div class="buttons">
-              <!-- 로그인 버튼 -->
-              <a href="#" class="button is-blurple" onclick="loginWithGoogle()">
-                <strong
-                  ><i class="fa-solid fa-right-to-bracket mr-2"></i>
-                  Login</strong
-                >
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
-    <!-- Navbar End -->
-
-    <!-- Hero Section Start -->
-    <section class="hero bg-base is-fullheight">
-      <div class="hero-body">
-        <div class="container">
-          <div class="columns is-vcentered">
-            <div class="column is-7-desktop is-7-tablet mr-6 mt-12" data-aos="fade-up">
-              <p class="title has-text-white has-text-weight-bold">
-                디스코드에서 끝내는 라이선스 관리, <span class="blurple">rlnl</span>.
-              </p>
-              <p class="subtitle has-text-grey-light is-size-6 mt-3">
-                디스코드 전용 라이선스 관리 입니다.
-                실제 서비스에 적용 가능한 구조로 운영되고 있으며, 신규 기능은 점진적으로 추가되고 있습니다.
-              </p>
-
-              <!-- 라이선스 카드 -->
-              <div class="card license-card mt-5" style="max-width: 420px;">
-                <div class="card-content">
-                  <p class="title is-6 is-spaced mb-2">
-                    라이선스 상태 확인
-                  </p>
-                  <p class="subtitle is-7 has-text-grey mb-4">
-                    결제 후 발급받은 라이선스 키를 입력하면, 유효 여부와 만료일을 확인할 수 있습니다.
-                  </p>
-
-                  <div class="field has-addons mb-2">
-                    <p class="control is-expanded">
-                      <input
-                        id="licenseInput"
-                        class="input"
-                        type="text"
-                        placeholder="예) RLNL-XXXX-XXXX"
-                      />
-                    </p>
-                    <p class="control">
-                      <a class="button is-primary" onclick="checkLicense()">
-                        <span class="icon">
-                          <i class="fa-solid fa-crown"></i>
-                        </span>
-                      </a>
-                    </p>
-                  </div>
-
-                  <p class="help is-grey mt-1">
-                    Google 로그인 후 사용 가능합니다.
-                  </p>
-                </div>
-
-                <footer class="card-footer">
-                  <a
-                    href="https://discord.gg/dsZjSb8JS2"
-                    target="_blank"
-                    class="card-footer-item has-text-info"
-                  >
-                    <span class="icon mr-1"><i class="fa-brands fa-discord"></i></span>
-                    <span>라이선스 문의하기</span>
-                  </a>
-                </footer>
-              </div>
-            </div>
-
-            <div class="column is-5-desktop is-5-tablet mt-6" data-aos="fade-left">
-              <img
-                class="image has-image-centered vert-move mt-4 hero-main-image"
-                src="relaunch_day.svg.jpg"
-                alt="hero image"
+          <div id="license" class="fa-card">
+            <h2 class="fa-card-title">라이선스 상태 확인</h2>
+            <p class="fa-card-text">
+              결제 후 발급받은 라이선스 키를 입력하면,<br />
+              유효 여부와 만료일을 확인할 수 있습니다.
+            </p>
+            <div class="fa-input-row">
+              <input
+                id="licenseInput"
+                type="text"
+                placeholder="예) RLNL-XXXX-XXXX"
               />
+              <button id="checkBtn">확인</button>
             </div>
+            <p class="fa-card-help" id="loginStateText">
+              Google 로그인 후 사용 가능합니다.
+            </p>
+            <a href="https://discord.gg/dsZjSb8JS2" target="_blank" class="fa-link">
+              디스코드에서 라이선스 문의하기
+            </a>
           </div>
         </div>
-      </div>
 
-      <div class="has-text-centered" data-tippy-content="Scroll Down">
-        <a href="#features">
-          <i class="fa-solid fa-circle-chevron-down fa-lg vert-move2 has-text-white"></i>
-        </a>
-      </div>
-    </section>
-    <!-- Hero Section End -->
-
-    <!-- Hero Waves Start -->
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-      <path
-        fill="#1a2634"
-        fill-opacity="1"
-        d="M0,288L24,261.3C48,235,96,181,144,154.7C192,128,240,128,288,149.3C336,171,384,213,432,202.7C480,192,528,128,576,133.3C624,139,672,213,720,213.3C768,213,816,139,864,101.3C912,64,960,64,1008,106.7C1056,149,1104,235,1152,240C1200,245,1248,171,1296,144C1344,117,1392,139,1416,149.3L1440,160L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z"
-      ></path>
-    </svg>
-    <!-- Hero Waves End -->
-
-    <!-- Features Section Start -->
-    <section id="features" class="section mt-6">
-      <div class="has-text-centered">
-        <h1 class="title lined">Features</h1>
-        <div class="line line-center blurple"></div>
-      </div>
-
-      <!-- Feature 1 -->
-      <div class="single-feature">
-        <div class="columns mt-6">
-          <div class="column mr-6">
-            <h4 class="title">자동 라이선스 <span class="blurple">발급</span></h4>
-            <p class="subtitle mt-3">
-              결제 완료와 동시에 라이선스를 자동 발급하는 구조로 설계되어 있습니다.
-              라니 MALL과 연동하여 별도 수동 작업 없이 키가 발급되도록 순차적으로 적용 중입니다.
-            </p>
-          </div>
-          <div class="column" data-aos="fade-left">
-            <img
-              class="image has-image-centered"
-              src="features1.svg"
-              alt="feature1 img"
-              style="width: 23rem;"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 2 -->
-      <div class="single-feature">
-        <div class="columns mt-6">
-          <div class="column" data-aos="fade-right">
-            <img
-              class="image has-image-centered"
-              src="features2.svg"
-              alt="feature2 img"
-              style="width: 23rem;"
-            />
-          </div>
-          <div class="column">
-            <h4 class="title">
-              디스코드에서 <span class="has-text-primary">바로 인증</span>
-            </h4>
-            <p class="subtitle mt-3">
-              발급 받으신 라이선스를 알려 주세요.
-              인증 결과는 rlnl 웹 패널과 연동되어, 브라우저에서도 동일하게 확인할 수 있도록 합니다.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 3 -->
-      <div class="single-feature">
-        <div class="columns mt-6">
-          <div class="column mr-6">
-            <h4 class="title">
-              만료 &amp; 역할 <span class="has-text-warning">자동 관리</span>
-            </h4>
-            <p class="subtitle mt-3">
-              라이선스 만료 시 역할을 자동으로 제거하고 알림을 보내는 기능을 기준으로 설계되어 있습니다.
-              안정성을 충분히 검증한 뒤 실제 운영 서버에 단계적으로 적용할 계획입니다.
-            </p>
-          </div>
-          <div class="column" data-aos="fade-left">
-            <img
-              class="image has-image-centered"
-              src="features3.svg"
-              alt="feature3 img"
-              style="width: 23rem;"
-            />
-          </div>
-        </div>
-      </div>
-
-      <!-- Feature 4 -->
-      <div class="single-feature">
-        <div class="columns mt-6">
-          <div class="column" data-aos="fade-right">
-            <img
-              class="image has-image-centered"
-              src="features4.svg"
-              alt="feature4 img"
-              style="width: 23rem;"
-            />
-          </div>
-          <div class="column">
-            <h4 class="title">웹 <span class="has-text-info">대시보드</span></h4>
-            <p class="subtitle mt-3">
-              브라우저에서 라이선스를 한눈에 관리할 수 있는 대시보드를 제공 합니다.
-              키 상태, 사용자, 서버 정보를 직관적으로 확인할 수 있도록 함께 합니다.
-            </p>
+        <!-- 오른쪽: 이미지 영역 -->
+        <div class="fa-col fa-col-right">
+          <div class="fa-image-frame">
+            <img src="relaunch_day.svg.jpg" alt="hero image" />
           </div>
         </div>
       </div>
     </section>
-    <!-- Features Section End -->
 
-    <!-- Stats Section Start -->
-    <section id="stats" class="section mt-6">
-      <div class="has-text-centered">
-        <h1 class="title lined">Stats</h1>
-        <div class="line line-center blurple"></div>
-      </div>
-
-      <div class="columns mt-6">
-        <div class="column has-text-centered">
-          <p class="title has-text-weight-bold lined">Soon</p>
-          <span class="subtitle has-text-weight-bold blurple"
-            ><i class="fa-solid fa-server"></i> 연결 서버</span
-          >
-        </div>
-
-        <div class="column has-text-centered">
-          <p class="title has-text-weight-bold lined">Soon</p>
-          <span class="subtitle has-text-weight-bold blurple"
-            ><i class="fa-solid fa-terminal"></i> 명령어</span
-          >
-        </div>
-
-        <div class="column has-text-centered">
-          <p class="title has-text-weight-bold lined">Soon</p>
-          <span class="subtitle has-text-weight-bold blurple"
-            ><i class="fa-solid fa-users"></i> 인증 사용자</span
-          >
-        </div>
-      </div>
+    <!-- 아래 추가 섹션 -->
+    <section id="about" class="fa-section">
+      <h2>About rlnl</h2>
+      <p>
+        rlnl은 디스코드 서버에서 라이선스를 간편하게 관리할 수 있도록 설계된 봇입니다.
+        역할 연동, 만료 알림, 웹 패널 연동 등을 단계적으로 도입할 예정입니다.
+      </p>
     </section>
-    <!-- Stats Section End -->
+  </main>
 
-    <!-- Invite Section Start -->
-    <section class="section mt-6">
-      <div class="columns">
-        <div class="column has-text-left">
-          <p class="title has-text-weight-bold">
-            Ready to use <span class="blurple">rlnl</span>?
-          </p>
-          <p class="subtitle mt-3 has-text-gray">
-            실제 운영 환경을 전제로 구축된 라이선스 관리 봇입니다.
-            새로운 기능은 먼저 별도 서버에서 검증한 뒤 순차적으로 서비스에 반영됩니다.
-          </p>
-          <a href="https://discord.gg/dsZjSb8JS2" class="button is-blurple is-medium"
-            ><strong><i class="fa-solid fa-book"></i> 디스코드에서 문의하기</strong></a
-          >
-        </div>
+  <footer class="fa-footer">
+    © <span id="year"></span> Nana · rlnl WEB
+  </footer>
 
-        <div class="column"></div>
-      </div>
-    </section>
-    <!-- Invite Section End -->
+  <!-- 연도 표시 -->
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 
-    <!-- Footer Section Start -->
-    <footer class="footer bg-base">
-      <div class="content has-text-centered has-text-white">
-        <div class="mb-2">
-          <a href="https://discord.com/invite/yEym2KZ9BU" class="has-text-white" target="_blank">
-            <i class="fa-brands fa-discord"></i>
-          </a>
-        </div>
-        <p>
-          <span class="has-text-weight-bold">rlnl WEB</span><br />
-          Discord License Bot &middot; RLNL WEB Panel
-          <br />
-          &copy; <span id="cp-year"></span> Copyright Nana. All Rights
-          Reserved.
-        </p>
+  <!-- Firebase + 라이선스 로직 -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+    import {
+      getAuth,
+      GoogleAuthProvider,
+      signInWithPopup,
+      onAuthStateChanged
+    } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
+    import {
+      getFirestore,
+      doc,
+      getDoc
+    } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
 
-        <p style="letter-spacing: 0.1em;" class="is-uppercase">
-          Website Designed By
-          <a
-            href="https://jstnlt.my.id"
-            class="blurple has-text-weight-bold"
-            target="_blank"
-            >JstnLT</a
-          >.<br />The Original Website Design is Open Source on
-          <a
-            href="https://github.com/JastinXyz/discord-bot-landing-page-web"
-            class="blurple has-text-weight-bold"
-            target="_blank"
-            >Github</a
-          >
-        </p>
-      </div>
-    </footer>
-    <!-- Footer Section End -->
+    const firebaseConfig = {
+      apiKey: "AIzaSyAPn2ZTZjAxqX4WIzd8O43jq8cXD_8J1SE",
+      authDomain: "rani-mall-firebase.firebaseapp.com",
+      projectId: "rani-mall-firebase",
+      storageBucket: "rani-mall-firebase.firebasestorage.app",
+      messagingSenderId: "231199139441",
+      appId: "1:231199139441:web:fe2e971c00a8282cb95dd0",
+      measurementId: "G-KYFWJED24P",
+    };
 
-    <!-- 외부 JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-    <script src="https://unpkg.com/tippy.js@6"></script>
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db   = getFirestore(app);
+    const provider = new GoogleAuthProvider();
 
-    <!-- UI script.js 통합 -->
-    <script>
-      // tippy.js
-      tippy("[data-tippy-content]");
+    const loginBtn       = document.getElementById("loginBtn");
+    const checkBtn       = document.getElementById("checkBtn");
+    const licenseInput   = document.getElementById("licenseInput");
+    const loginStateText = document.getElementById("loginStateText");
 
-      // aos.js
-      AOS.init({
-        duration: 700,
-        once: true
-      });
+    // 로그인 버튼
+    loginBtn.addEventListener("click", async () => {
+      try {
+        await signInWithPopup(auth, provider);
+        alert("로그인 완료");
+      } catch (e) {
+        console.error(e);
+        alert("로그인 중 오류 발생");
+      }
+    });
 
-      // navbar burger
-      document.addEventListener('DOMContentLoaded', () => {
-        const $navbarBurgers = Array.prototype.slice.call(
-          document.querySelectorAll('.navbar-burger'),
-          0
+    // 라이선스 확인 버튼
+    checkBtn.addEventListener("click", async () => {
+      try {
+        const user = auth.currentUser;
+        if (!user) {
+          alert("먼저 로그인 해주세요.");
+          return;
+        }
+
+        const key = licenseInput.value.trim();
+        if (!key) {
+          alert("라이선스 키를 입력해주세요.");
+          return;
+        }
+
+        const ref = doc(db, "licenses", key);
+        const snap = await getDoc(ref);
+
+        if (!snap.exists()) {
+          alert("존재하지 않는 라이선스 키입니다.");
+          return;
+        }
+
+        const data = snap.data();
+        const now = Date.now();
+
+        if (data.status !== "active") {
+          alert(`사용 불가한 키입니다. 상태: ${data.status}`);
+          return;
+        }
+
+        if (data.expiresAt && data.expiresAt.toMillis() < now) {
+          alert("만료된 라이선스입니다. (기간 종료)");
+          return;
+        }
+
+        alert(
+          `정상 키입니다!\n` +
+          `상품: ${data.productId}\n` +
+          `만료일: ${
+            data.expiresAt
+              ? data.expiresAt.toDate().toLocaleString()
+              : "만료일 정보 없음"
+          }`
         );
+      } catch (e) {
+        console.error(e);
+        alert("라이선스 확인 중 오류가 발생했습니다.");
+      }
+    });
 
-        if ($navbarBurgers.length > 0) {
-          $navbarBurgers.forEach(el => {
-            el.addEventListener('click', () => {
-              const target = el.dataset.target;
-              const $target = document.getElementById(target);
-              el.classList.toggle('is-active');
-              $target.classList.toggle('is-active');
-            });
-          });
-        }
-      });
-
-      $(document).ready(function() {
-        $(".navbar-burger").click(function() {
-          $(".navbar-burger").toggleClass("is-active");
-          $(".navbar-menu").toggleClass("is-active");
-        });
-      });
-
-      // navbar on scroll
-      $(function () {
-        $(window).on("scroll", function () {
-          if ($(window).scrollTop() > 700) {
-            $("nav").addClass("nav-w");
-            $(".navbar-menu").addClass("nav-w");
-            $(".navbar-item").addClass("nav-dark");
-            $(".navbar-link").addClass("nav-dark");
-            $(".navbar-burger").removeClass("has-text-white");
-            $(".navbar-burger").addClass("has-text-dark");
-          } else {
-            $("nav").removeClass("nav-w");
-            $(".navbar-menu").removeClass("nav-w");
-            $(".navbar-item").removeClass("nav-dark");
-            $(".navbar-link").removeClass("nav-dark");
-            $(".navbar-burger").removeClass("has-text-dark");
-            $(".navbar-burger").addClass("has-text-white");
-          }
-        });
-      });
-
-      // back to top
-      var btn = $("#backtotop");
-
-      $(window).scroll(function () {
-        if ($(window).scrollTop() > 100) {
-          btn.addClass("show");
-        } else {
-          btn.removeClass("show");
-        }
-      });
-
-      btn.on("click", function (e) {
-        e.preventDefault();
-        $("html, body").animate({ scrollTop: 0 }, "300");
-      });
-
-      // copyright year
-      document.getElementById("cp-year").innerHTML = new Date().getFullYear();
-    </script>
-
-    <!-- Firebase + 라이선스 로직 통합 -->
-    <script type="module">
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
-      import {
-        getAuth,
-        GoogleAuthProvider,
-        signInWithPopup,
-        onAuthStateChanged
-      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js";
-      import {
-        getFirestore,
-        doc,
-        getDoc
-      } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore.js";
-
-      const firebaseConfig = {
-        apiKey: "AIzaSyAPn2ZTZjAxqX4WIzd8O43jq8cXD_8J1SE",
-        authDomain: "rani-mall-firebase.firebaseapp.com",
-        projectId: "rani-mall-firebase",
-        storageBucket: "rani-mall-firebase.firebasestorage.app",
-        messagingSenderId: "231199139441",
-        appId: "1:231199139441:web:fe2e971c00a8282cb95dd0",
-        measurementId: "G-KYFWJED24P",
-      };
-
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db   = getFirestore(app);
-
-      const provider = new GoogleAuthProvider();
-
-      window.loginWithGoogle = async () => {
-        try {
-          await signInWithPopup(auth, provider);
-          alert("로그인 완료");
-        } catch (e) {
-          console.error(e);
-          alert("로그인 중 오류 발생");
-        }
-      };
-
-      window.checkLicense = async () => {
-        try {
-          const user = auth.currentUser;
-          if (!user) {
-            alert("먼저 로그인 해주세요.");
-            return;
-          }
-
-          const inputEl = document.getElementById("licenseInput");
-          const key = inputEl.value.trim();
-
-          if (!key) {
-            alert("라이선스 키를 입력해주세요.");
-            return;
-          }
-
-          const ref = doc(db, "licenses", key);
-          const snap = await getDoc(ref);
-
-          if (!snap.exists()) {
-            alert("존재하지 않는 라이선스 키입니다.");
-            return;
-          }
-
-          const data = snap.data();
-          const now = Date.now();
-
-          if (data.status !== "active") {
-            alert(`사용 불가한 키입니다. 상태: ${data.status}`);
-            return;
-          }
-
-          if (data.expiresAt && data.expiresAt.toMillis() < now) {
-            alert("만료된 라이선스입니다. (기간 종료)");
-            return;
-          }
-
-          alert(
-            `정상 키입니다!\n` +
-            `상품: ${data.productId}\n` +
-            `만료일: ${
-              data.expiresAt
-                ? data.expiresAt.toDate().toLocaleString()
-                : "만료일 정보 없음"
-            }`
-          );
-        } catch (e) {
-          console.error(e);
-          alert("라이선스 확인 중 오류가 발생했습니다.");
-        }
-      };
-
-      onAuthStateChanged(auth, (user) => {
-        console.log("auth state:", user?.email || "로그아웃");
-      });
-    </script>
-  </body>
+    // 로그인 상태 표시
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        loginBtn.textContent = user.displayName
+          ? `${user.displayName} (로그아웃 예정 기능)`
+          : "로그인됨";
+        loginStateText.textContent = "현재 계정으로 라이선스 조회가 가능합니다.";
+      } else {
+        loginBtn.textContent = "Google 로그인";
+        loginStateText.textContent = "Google 로그인 후 사용 가능합니다.";
+      }
+    });
+  </script>
+</body>
 </html>
