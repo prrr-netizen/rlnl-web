@@ -13,6 +13,7 @@ body {
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #e4edff;
   background: #050812;
+  min-height: 100%;
 }
 
 /* 배경: 다크 Frutiger Aero */
@@ -183,9 +184,9 @@ body {
   justify-content: flex-end;
 }
 
-/* 제목/본문 타이포 강화 */
+/* 제목/본문 타이포 */
 .fa-title {
-  font-size: 30px;
+  font-size: 26px;
   line-height: 1.35;
   margin: 0 0 14px;
   color: #f5f7ff;
@@ -193,12 +194,12 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* 메인 히어로 타이틀 전용 (더 굵고 큼) */
+/* 메인 히어로 타이틀 (조금만 강조) */
 .fa-title-main {
-  font-size: 38px;
+  font-size: 30px;
   font-weight: 700;
-  letter-spacing: 0.03em;
-  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
 }
 
 .fa-title .accent {
@@ -213,21 +214,25 @@ body {
   font-weight: 400;
 }
 
-/* 라이선스 카드 */
+/* 라이선스 카드 – 더 이쁘게 */
 .fa-card {
   margin-top: 8px;
   padding: 20px 20px 18px;
   border-radius: 18px;
-  background: radial-gradient(circle at 20% 0, rgba(120, 220, 255, 0.12), rgba(8, 16, 40, 0.98));
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9);
+  background: linear-gradient(135deg, rgba(14, 25, 60, 0.96), rgba(20, 40, 90, 0.96));
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.85),
+    0 0 0 1px rgba(140, 210, 255, 0.25) inset;
   border: 1px solid rgba(140, 210, 255, 0.35);
+  backdrop-filter: blur(10px);
 }
 
 .fa-card-title {
-  margin: 0 0 8px;
-  font-size: 16px;
+  margin: 0 0 10px;
+  font-size: 17px;
   font-weight: 600;
-  color: #e6eeff;
+  color: #f5f7ff;
+  letter-spacing: 0.03em;
 }
 
 .fa-card-text {
@@ -258,15 +263,15 @@ body {
 }
 
 .fa-input-row button {
-  padding: 10px 18px;
+  padding: 10px 20px;
   border-radius: 999px;
   border: none;
-  background: radial-gradient(circle at 30% 0, #8ee9ff, #0073ff);
+  background: radial-gradient(circle at 30% 0, #9af0ff, #0070ff);
   color: #fff;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 12px 26px rgba(0, 140, 255, 0.75);
+  box-shadow: 0 14px 28px rgba(0, 140, 255, 0.8);
 }
 
 .fa-input-row button:hover {
@@ -355,7 +360,7 @@ body {
   }
 
   .fa-title-main {
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .fa-image-frame {
