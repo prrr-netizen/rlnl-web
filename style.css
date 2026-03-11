@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap");
 
 *,
 *::before,
@@ -12,17 +12,17 @@ body {
   padding: 0;
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #ffffff;
-  background: #050812;
+  background: #050812;      /* 전체 기본 다크 */
   min-height: 100%;
 }
 
-/* 전체 배경 (살짝 그라데이션만) */
+/* 전체 배경 – 살짝 효과 + 기본 다크 */
 .fa-bg {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 25% 15%, rgba(70, 170, 255, 0.3) 0, rgba(0, 0, 0, 0) 55%),
-    radial-gradient(circle at 80% 75%, rgba(120, 255, 190, 0.2) 0, rgba(0, 0, 0, 0) 55%),
+    radial-gradient(circle at 25% 15%, rgba(70, 170, 255, 0.25) 0, rgba(0, 0, 0, 0) 55%),
+    radial-gradient(circle at 80% 75%, rgba(120, 255, 190, 0.18) 0, rgba(0, 0, 0, 0) 55%),
     #050812;
   z-index: -1;
 }
@@ -103,11 +103,12 @@ body {
   white-space: nowrap;
 }
 
-/* 메인 레이아웃 */
+/* 메인 레이아웃 – 아래까지 다크 유지 */
 .fa-main {
   max-width: 1080px;
   margin: 40px auto 60px;
   padding: 0 16px 40px;
+  background: #050812;
 }
 
 /* 윈도우 박스 */
@@ -184,27 +185,31 @@ body {
   justify-content: flex-end;
 }
 
-/* 기본 타이틀 베이스 */
+/* 기본 타이틀 베이스 (다른 곳에서 쓸 때) */
 .fa-title {
-  font-size: 24px;
+  margin: 0 0 14px;
+  line-height: 1.4;
+}
+
+/* 메인 문구 그라데이션 텍스트 */
+.fa-title-main {
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
   line-height: 1.45;
   margin: 0 0 14px;
-  color: #ffffff;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+
+  background: linear-gradient(120deg, #6fd7ff, #8cffc7, #ffffff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  letter-spacing: 0.06em;
 }
 
-/* 디스코드에서 끝내는 / 라이선스 관리, rlnl. 전용 포인트 */
-.fa-title-main {
-  font-size: 28px;          /* 적당히 크게 */
-  font-weight: 700;         /* 굵게 */
-  letter-spacing: 0.03em;   /* 살짝 간격 */
-}
-
-/* rlnl 부분만 조금 더 강조 */
+/* rlnl 부분 살짝 더 포인트 */
 .fa-title-main .accent {
-  color: #4fb4ff;
-  font-weight: 800;
+  font-weight: 900;
 }
 
 /* 서브타이틀 */
@@ -216,7 +221,7 @@ body {
   font-weight: 400;
 }
 
-/* 라이선스 카드 – 살짝 포인트 */
+/* 라이선스 카드 */
 .fa-card {
   margin-top: 8px;
   padding: 20px 20px 18px;
@@ -357,12 +362,8 @@ body {
     padding: 18px 14px 18px;
   }
 
-  .fa-title {
-    font-size: 20px;
-  }
-
   .fa-title-main {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .fa-image-frame {
