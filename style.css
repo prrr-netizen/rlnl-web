@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap");
 
 *,
 *::before,
@@ -11,19 +11,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  color: #e4edff;
+  color: #ffffff;
   background: #050812;
   min-height: 100%;
 }
 
-/* 배경: 다크 Frutiger Aero */
+/* 전체 배경 (살짝 그라데이션만) */
 .fa-bg {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle at 25% 15%, rgba(70, 170, 255, 0.5) 0, rgba(0, 0, 0, 0) 55%),
-    radial-gradient(circle at 80% 75%, rgba(120, 255, 190, 0.4) 0, rgba(0, 0, 0, 0) 55%),
-    linear-gradient(135deg, #040714 0%, #050812 40%, #020308 100%);
+    radial-gradient(circle at 25% 15%, rgba(70, 170, 255, 0.3) 0, rgba(0, 0, 0, 0) 55%),
+    radial-gradient(circle at 80% 75%, rgba(120, 255, 190, 0.2) 0, rgba(0, 0, 0, 0) 55%),
+    #050812;
   z-index: -1;
 }
 
@@ -98,7 +98,7 @@ body {
   font-weight: 500;
   cursor: pointer;
   background: rgba(220, 80, 80, 0.95);
-  color: #fff;
+  color: #ffffff;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.7);
   white-space: nowrap;
 }
@@ -184,37 +184,39 @@ body {
   justify-content: flex-end;
 }
 
-/* 제목/본문 타이포 */
+/* 기본 타이틀 베이스 */
 .fa-title {
-  font-size: 26px;
-  line-height: 1.35;
+  font-size: 24px;
+  line-height: 1.45;
   margin: 0 0 14px;
-  color: #f5f7ff;
+  color: #ffffff;
   font-weight: 600;
   letter-spacing: 0.01em;
 }
 
-/* 메인 히어로 타이틀 (조금만 강조) */
+/* 디스코드에서 끝내는 / 라이선스 관리, rlnl. 전용 포인트 */
 .fa-title-main {
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+  font-size: 28px;          /* 적당히 크게 */
+  font-weight: 700;         /* 굵게 */
+  letter-spacing: 0.03em;   /* 살짝 간격 */
 }
 
-.fa-title .accent {
+/* rlnl 부분만 조금 더 강조 */
+.fa-title-main .accent {
   color: #4fb4ff;
+  font-weight: 800;
 }
 
+/* 서브타이틀 */
 .fa-subtitle {
   font-size: 14px;
   line-height: 1.7;
-  color: #9aa9d8;
+  color: #c5cdee;
   margin: 0 0 20px;
   font-weight: 400;
 }
 
-/* 라이선스 카드 – 더 이쁘게 */
+/* 라이선스 카드 – 살짝 포인트 */
 .fa-card {
   margin-top: 8px;
   padding: 20px 20px 18px;
@@ -229,9 +231,9 @@ body {
 
 .fa-card-title {
   margin: 0 0 10px;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 600;
-  color: #f5f7ff;
+  color: #ffffff;
   letter-spacing: 0.03em;
 }
 
@@ -239,7 +241,7 @@ body {
   margin: 0 0 14px;
   font-size: 13px;
   line-height: 1.6;
-  color: #9aa9d8;
+  color: #c5cdee;
 }
 
 .fa-input-row {
@@ -255,7 +257,7 @@ body {
   border: 1px solid rgba(140, 210, 255, 0.35);
   font-size: 13px;
   background: rgba(3, 8, 20, 0.9);
-  color: #e4edff;
+  color: #ffffff;
 }
 
 .fa-input-row input::placeholder {
@@ -267,7 +269,7 @@ body {
   border-radius: 999px;
   border: none;
   background: radial-gradient(circle at 30% 0, #9af0ff, #0070ff);
-  color: #fff;
+  color: #ffffff;
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -281,7 +283,7 @@ body {
 .fa-card-help {
   margin: 0 0 8px;
   font-size: 11px;
-  color: #7f8cb2;
+  color: #8a94bd;
 }
 
 .fa-link {
@@ -327,14 +329,14 @@ body {
   margin: 0 0 10px;
   font-size: 16px;
   font-weight: 600;
-  color: #e6eeff;
+  color: #ffffff;
 }
 
 .fa-section p {
   margin: 0;
   font-size: 13px;
   line-height: 1.7;
-  color: #9aa9d8;
+  color: #c5cdee;
 }
 
 /* 푸터 */
@@ -356,11 +358,11 @@ body {
   }
 
   .fa-title {
-    font-size: 22px;
+    font-size: 20px;
   }
 
   .fa-title-main {
-    font-size: 26px;
+    font-size: 24px;
   }
 
   .fa-image-frame {
