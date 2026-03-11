@@ -6,14 +6,21 @@
   box-sizing: border-box;
 }
 
+/* html, body 확실히 전체 높이 + 다크 */
+html {
+  margin: 0;
+  padding: 0;
+  background: #050812;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
   font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   color: #ffffff;
-  background: #050812;      /* 전체 기본 다크 */
-  min-height: 100%;
+  background: #050812;
+  min-height: 100vh; /* 화면 기준으로 꽉 채우기 */
 }
 
 /* 전체 배경 – 살짝 효과 + 기본 다크 */
@@ -103,11 +110,11 @@ body {
   white-space: nowrap;
 }
 
-/* 메인 레이아웃 – 아래까지 다크 유지 */
+/* 메인 레이아웃 – 아래까지 다크 유지, 여백 살짝 줄임 */
 .fa-main {
   max-width: 1080px;
-  margin: 40px auto 60px;
-  padding: 0 16px 40px;
+  margin: 40px auto 30px;  /* 아래 60 → 30 */
+  padding: 0 16px 30px;    /* 패딩도 40 → 30 */
   background: #050812;
 }
 
@@ -185,7 +192,7 @@ body {
   justify-content: flex-end;
 }
 
-/* 기본 타이틀 베이스 (다른 곳에서 쓸 때) */
+/* 기본 타이틀 베이스 */
 .fa-title {
   margin: 0 0 14px;
   line-height: 1.4;
